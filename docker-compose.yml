@@ -1,4 +1,4 @@
-
+version: '3.8'
 
 services:
   superset:
@@ -7,7 +7,7 @@ services:
     ports:
       - "8088:8088"
     environment:
-      SUPERSET_SECRET_KEY: "2s50rNwpx2DW78ttZqwZzgZ+UpTw/u7tseQ90rpfhSYdLq20cQHo1lxr"
+      SUPERSET_SECRET_KEY: "your_super_secret_key"
       SQLALCHEMY_DATABASE_URI: "postgresql+psycopg2://superset:superset@db:5432/superset"
       REDIS_HOST: "redis"
       REDIS_PORT: "6379"
@@ -37,4 +37,3 @@ volumes:
   superset_home:
   superset_db_data:
   redis_data:
-
