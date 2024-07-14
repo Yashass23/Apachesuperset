@@ -39,10 +39,11 @@ kind: Service
 metadata:
   name: superset
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 8088
     targetPort: 8088
+    nodePort: 30008  # Ensure this port is available and not being used by another service
   selector:
     app: superset
 
