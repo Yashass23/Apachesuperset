@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: superset-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: superset-db
+  template:
+    metadata:
+      labels:
+        app: superset-db
+    spec:
+      containers:
+      - name: superset-db
+        image: postgres:13
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "superset"
+        - name: POSTGRES_USER
+          value: "superset"
+        - name: POSTGRES_PASSWORD
+          value: "superset"
+        volumeMounts:
+        - name: superset-db-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: superset-db-data
+        persistentVolumeClaim:
+          claimName: superset-db-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: superset-db
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: superset-db
+

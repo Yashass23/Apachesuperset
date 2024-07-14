@@ -10,7 +10,7 @@ ENV SUPERSET_HOME=/app/superset
 # Copy your Superset configuration if any
 # COPY superset_config.py $SUPERSET_HOME/superset_config.py
 # Copy your company logo (favicon)
-COPY Apachesuperset/superset/superset/static/assets/images/GHLOGO.png /app/superset/superset/static/assets/images/GHLOGO.png
+COPY /superset/superset/static/assets/images/GHLOGO.png /app/superset/superset/static/assets/images/GHLOGO.png
 
 # Expose the necessary port
 EXPOSE 8088
